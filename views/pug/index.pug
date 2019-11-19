@@ -1,0 +1,48 @@
+html
+  head
+    title Home Page
+    meta(name='description', content='Home Page')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/public/style.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css')
+  body
+    .container
+      .text-center
+        h1.jumbotron.m-3.mt-4.p-3 Home Page
+        h2.center.text-secondary.h3#pug-success-message
+          | This page is being rendered from
+          | #{renderedFrom}
+          | into HTML
+        p.center#pug-variable Local authentication using
+          =authLib
+      .forms
+        if showLogin
+          hr
+          p.text-center Login Form
+          form(action='/login', method='post')
+            div.form-group
+              label(for="username") Username:
+              input.form-control#username(type='text', name='username')
+            div.form-group
+              label Password:
+              input.form-control(type='password', name='password')
+            div.align-center-md
+              input.btn.btn-primary(type='submit', value='Log In')
+
+        if showSignUp
+          hr
+          p.text-center Signup Form
+          form(action='/signup', method='post')
+            div.form-group
+              label Username:
+              input.form-control(type='text', name='username')
+            div.form-group
+              label Password:
+              input.form-control(type='password', name='password')
+            div
+              input.btn.btn-primary(type='submit', value='Sign up')
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  script(src='/public/client.js')
